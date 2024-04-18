@@ -1,0 +1,13 @@
+version: '3.6'
+services:
+  board-api:
+    container_name: board-api
+    tty: true
+    image: andreysenov/firebase-tools:13.5.2-node-18-slim
+    volumes:
+      - ./:/home/node
+    command: firebase emulators:start --import=/home/node/export --export-on-exit
+    ports: 
+      - 9099:9099 # **AUTH_PORT**
+      - 4000:4000 # **UI_PORT**
+      - 8080:8080 # **FIRESTORE_PORT**
